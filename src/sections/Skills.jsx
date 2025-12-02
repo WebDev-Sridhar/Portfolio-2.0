@@ -11,8 +11,7 @@ import {
 import { db } from "../firebase/init";
 import { useAdmin } from "../context/AdminContext";
 import { Pencil, Plus, X } from "lucide-react";
-import { IconMap } from "../icons/iconMap";
-import TechSphere from "../components/TechSphere";
+import  IconMap  from "../icons/IconMap.jsx";
 
 export default function Skills() {
   const { isAdmin } = useAdmin();
