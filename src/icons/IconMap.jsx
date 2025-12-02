@@ -1,6 +1,6 @@
 import React from "react";
 
-export const IconMap = {
+const IconMap = {
 
   nodejs:(
     <svg  xmlns="http://www.w3.org/2000/svg" width={36} height={36} 
@@ -63,3 +63,5 @@ fill={"#18e13d"} viewBox="0 0 24 24">
    )
    
 };
+
+export default IconMap;
