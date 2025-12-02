@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+.luckiest-guy-regular {
+  font-family: "Luckiest Guy", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+  :root {
+
+    --color-bg: #080808;
+    --color-text: white;
+    --color-border: #cdcaca;
+    --card-bg: #0e0d0d;
+    --color-text-light: #a3a3a3;
+    --btn-bg: #7c3ca1;
+    --btn-text: #000;
+    --color-canvas: #0cd1d1;
+      --hero-overlay: rgba(0,0,0,0.2);
+      --hero-bg:#7c3ca1;
+   
+  }
+
+  .dark {
+
+    --color-bg: rgb(234, 234, 234);
+    --color-text: black;
+    --color-border: #424141;
+    --card-bg: #f9f9f9;
+    --color-text-light: #6b6b6b;
+    --btn-bg: #4e2267;
+    --btn-text: #fff;
+      --hero-overlay: rgba(0,0,0,0.08);
+      --color-canvas: #4e5b5d;
+       --hero-bg:#e7d1eb;
+  }
+
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+.nav-link {
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: var(--accent-color,#7c3ca1);
+  transition: width 0.3s;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link-mobile {
+  padding-bottom: 2px;
+}
+video { -webkit-font-smoothing: antialiased; -webkit-transform: translate3d(0,0,0); }
+
+canvas{
+  color: var(--color-canvas);
+}
