@@ -32,10 +32,10 @@ export default function AnimeFaceTracker() {
   };
 
 const eyeX = useTransform(mouseX, [-200, 200], [-4, 4]);
-const eyeY = useTransform(mouseY, [-200, 200], [-4, 4]);
+const eyeY = useTransform(mouseY, [200, -200], [4, -4]);
 
 const headTiltX = useTransform(mouseX, [-200, 200], [-12, 12]);
-const headTiltY = useTransform(mouseY, [-200, 200], [-8, 8]);
+const headTiltY = useTransform(mouseY, [200, -200], [8, -8]);
 
   return (
     <div
@@ -45,7 +45,7 @@ const headTiltY = useTransform(mouseY, [-200, 200], [-8, 8]);
     >
       {/* HEAD */}
       <motion.img
-       {...dark ? {src: "src/img/vector.png"} : {src: "src/img/vector1.png", backgroundColor: "black"}}
+       {...dark ? {src: "/img/vector.png"} : {src: "/img/vector1.png", backgroundColor: "black"}}
         alt="anime-face"
         className="w-full h-auto pointer-events-none"
         style={{

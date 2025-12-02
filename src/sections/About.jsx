@@ -9,7 +9,7 @@ export default function About() {
   const { isAdmin } = useAdmin();
   const [about, setAbout] = useState({
     aboutText: "",
-    profileImage: "/src/img/profile.png",
+    profileImage: "/img/profile.png",
   });
 
   const [editMode, setEditMode] = useState(false);
@@ -61,7 +61,7 @@ export default function About() {
             <div
               className="w-full h-full bg-cover bg-center"
               style={{
-                backgroundImage: `url(${draft.profileImage || "/src/img/profile.png"})`,
+                backgroundImage: `url("/img/profile.png")`,
               }}
             ></div>
           </motion.div>

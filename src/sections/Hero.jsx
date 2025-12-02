@@ -146,7 +146,7 @@ export default function HeroAnimated({callParent, setPanel}) {
               {/* Avatar: use public/img/Avatar.png */}
               <div
                 className="w-full h-full bg-cover bg-center"
-                style={{ backgroundImage: "url('/src/img/avatar.png')" }}
+                style={{ backgroundImage: `url("/img/Avatar.png")`}}
                 role="img"
                 aria-label="Avatar"
               />
