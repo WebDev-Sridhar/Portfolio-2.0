@@ -31,8 +31,8 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact-section" className="py-16">
-      <div className="container">
+    <section id="contact-section" className="py-5 md:py-20">
+      <div className="grid grid-cols-1 md:grid-cols-2  items-center">
      <AnimeFaceTracker/>
         <div className="card text-center p-8 relative" >
 
@@ -62,8 +62,7 @@ export default function Contact() {
           <p className="text-[--color-text-light]">
             <span className="font-medium">Phone:</span> {contact.phone}
           </p>
-        </div>
-          <div className="flex gap-6 justify-center ">
+           <div className="flex gap-6 justify-center mt-6">
       {/* GitHub */}
 
           <a
@@ -115,6 +114,8 @@ fill="#fff" viewBox="0 0 24 24" >
 
       </a>
     </div>
+        </div>
+         
       </div>
 
       {/* Modal */}

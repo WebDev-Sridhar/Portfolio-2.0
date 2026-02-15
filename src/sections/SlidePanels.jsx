@@ -36,13 +36,13 @@ export default function SlidePanels() {
       
       {/* CORNER BUTTONS */}
 
-      <button onClick={() => setPanel("top")}
+        <button onClick={() => setPanel("top")}
         className="absolute top-20 left-1/2 -translate-x-1/2 text-2xl font-bold z-10 ">
         ABOUT ↑
       </button>
 
       <button onClick={() => setPanel("right")}
-        className="absolute right-4 top-1/2 -translate-y-1/2 text-2xl font-bold rotate-90 z-10">
+        className="absolute right-0 top-1/2 -translate-y-1/2 text-2xl font-bold rotate-90 z-10">
         SKILLS →
       </button>
 
@@ -52,7 +52,7 @@ export default function SlidePanels() {
       </button>
 
       <button onClick={() => setPanel("left")}
-        className="absolute left-4 top-1/2 -translate-y-1/2 text-2xl font-bold -rotate-90 z-10">
+        className="absolute left-0 top-1/2 -translate-y-1/2 text-2xl font-bold -rotate-90 z-10">
         CONTACT ←
       </button>
 

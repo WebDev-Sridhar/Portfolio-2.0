@@ -303,7 +303,7 @@ function ParticlesCanvas({ count = 30, interactive = true, color = "#62078C" }) 
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0  w-full h-full pointer-events-none"
+      className="absolute inset-0  w-full h-dvh pointer-events-none"
       style={{ zIndex: 0 }}
     />
   );
