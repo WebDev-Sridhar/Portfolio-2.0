@@ -122,6 +122,7 @@ export default function HeroAnimated({callParent, setPanel}) {
                 <p className="max-w-xl mb-6 opacity-90">{data.subtitle}</p>
 
                 <a
+                href="#contact-section"
                   onClick={callParent}
                   className="inline-block px-6 py-3 rounded bg-(--btn-bg) text-(--btn-text) font-semibold shadow hover:scale-[1.03] transition-transform"
                 >
