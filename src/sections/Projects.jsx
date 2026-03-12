@@ -3,20 +3,20 @@ import { motion, AnimatePresence } from "framer-motion";
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../firebase/init";
 import { useAdmin } from "../context/AdminContext";
-import { Pencil, Plus, X, Trash2 } from "lucide-react";
+import { Pencil, Plus, X, Trash2, ArrowUpRight } from "lucide-react";
+import SectionHeading from "../components/SectionHeading";
 
 export default function Projects() {
   const { isAdmin } = useAdmin();
 
   const [projects, setProjects] = useState([]);
-
   const [addMode, setAddMode] = useState(false);
   const [editMode, setEditMode] = useState(null);
 
   const emptyForm = { title: "", description: "", imageUrl: "", projectUrl: "" };
   const [form, setForm] = useState(emptyForm);
 
-  const [openProject, setOpenProject] = useState(null); // NEW → full card view
+  const [openProject, setOpenProject] = useState(null);
 
   const loadProjects = async () => {
     const q = await getDocs(collection(db, "projects"));
@@ -47,83 +47,82 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="py-16 relative">
-      <div className="container">
+    <section id="projects" className="py-24 bg-(--color-bg)">
+      <div className="max-w-6xl mx-auto px-6">
 
         {/* TITLE */}
-        <div className="flex justify-between items-center mb-6">
-          <h3 className="text-3xl font-bold text-(--color-text)">Projects</h3>
+        <div className="relative mb-12">
+          <SectionHeading
+            title="Projects"
+            subtitle="A selection of things I've built"
+          />
 
           {isAdmin && (
             <button
               onClick={() => setAddMode(true)}
-              className="px-4 py-2 rounded flex items-center gap-2 hover:opacity-90"
+              className="absolute top-0 right-0 flex items-center gap-2 px-4 py-2 text-sm rounded-full border
+                         border-(--color-border) text-(--color-text-light) hover:border-(--color-accent)
+                         hover:text-(--color-accent) transition-all duration-200"
             >
-              <Plus size={18} /> Add Project
+              <Plus size={15} /> Add Project
             </button>
           )}
         </div>
 
         {/* GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((p) => (
             <motion.div
               key={p.id}
-              onClick={() => setOpenProject(p)}   // NEW FULL VIEW
-              className="relative group rounded-xl overflow-hidden cursor-pointer 
-                         shadow-sm hover:shadow-xl transition-all
-                          hover:shadow-[#7c3ca1]/20"
+              onClick={() => setOpenProject(p)}
+              className="relative group bg-(--card-bg) border border-(--color-border) rounded-xl
+                         overflow-hidden cursor-pointer shadow-md hover:shadow-lg
+                         hover:scale-[1.02] transition-all duration-200"
               whileHover={{ scale: 1.02 }}
             >
-
               {/* ADMIN BUTTONS */}
               {isAdmin && (
-                <div
-                  className="absolute top-2 right-2 flex gap-2 opacity-100 md:opacity-0 
-                             group-hover:opacity-100 z-10 transition"
-                >
+                <div className="absolute top-2 right-2 flex gap-2 opacity-100 md:opacity-0
+                                 group-hover:opacity-100 z-10 transition">
                   <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setEditMode(p.id);
-                      setForm(p);
-                    }}
-                    className="p-2 rounded-full bg-(--color-bg)"
+                    onClick={(e) => { e.stopPropagation(); setEditMode(p.id); setForm(p); }}
+                    className="p-2 rounded-full bg-(--card-bg) border border-(--color-border) shadow-sm"
                   >
-                    <Pencil size={14} />
+                    <Pencil size={12} />
                   </button>
-
                   <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      removeProject(p.id);
-                    }}
-                    className="p-2 rounded-full bg-red-600 text-white"
+                    onClick={(e) => { e.stopPropagation(); removeProject(p.id); }}
+                    className="p-2 rounded-full bg-red-500/10 border border-red-500/30 text-red-500"
                   >
-                    <Trash2 size={14} />
+                    <Trash2 size={12} />
                   </button>
                 </div>
               )}
 
               {/* IMAGE */}
               {p.imageUrl && (
-                <motion.img
+                <img
                   src={p.imageUrl}
-                  className="w-full h-40 object-cover  transition-all duration-700"
+                  alt={p.title}
+                  className="w-full h-44 object-cover"
                 />
               )}
 
               {/* CONTENT */}
-              <div className="p-4">
-                <h4 className="font-semibold text-lg text-(--color-text)">
+              <div className="p-5">
+                <h4 className="font-semibold text-base text-(--color-text) mb-2">
                   {p.title}
                 </h4>
-
-                {/* Tech stack extracted automatically from description first line */}
                 {p.description && (
-                  <p className="text-sm opacity-70 mt-2 line-clamp-1">
-                    {p.description.split(".")[0]}
+                  <p className="text-sm text-(--color-text-light) line-clamp-2 leading-relaxed">
+                    {p.description}
                   </p>
+                )}
+                {p.projectUrl && (
+                  <div className="flex items-center gap-1 mt-3 text-xs text-(--color-accent)
+                                   font-medium group-hover:gap-2 transition-all">
+                    View Project <ArrowUpRight size={13} />
+                  </div>
                 )}
               </div>
             </motion.div>
@@ -133,30 +132,14 @@ export default function Projects() {
         {/* ADD MODAL */}
         {addMode && (
           <Modal title="Add Project" onClose={() => setAddMode(false)}>
-            <ProjectForm
-              form={form}
-              setForm={setForm}
-              onSave={saveProject}
-              submitText="Save"
-            />
+            <ProjectForm form={form} setForm={setForm} onSave={saveProject} submitText="Save" />
           </Modal>
         )}
 
         {/* EDIT MODAL */}
         {editMode && (
-          <Modal
-            title="Edit Project"
-            onClose={() => {
-              setEditMode(null);
-              setForm(emptyForm);
-            }}
-          >
-            <ProjectForm
-              form={form}
-              setForm={setForm}
-              onSave={updateProjectData}
-              submitText="Update"
-            />
+          <Modal title="Edit Project" onClose={() => { setEditMode(null); setForm(emptyForm); }}>
+            <ProjectForm form={form} setForm={setForm} onSave={updateProjectData} submitText="Update" />
           </Modal>
         )}
 
@@ -167,33 +150,34 @@ export default function Projects() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/60 backdrop-blur-md 
-                         flex justify-center items-center p-4 z-50"
+              className="fixed inset-0 bg-black/60 backdrop-blur-md flex justify-center items-center p-4 z-50"
             >
               <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
+                initial={{ scale: 0.85, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.7, opacity: 0 }}
-                className=" bg-(--color-bg)
-                           rounded-2xl p-6  w-full h-3/4 md:h-auto md:max-w-4xl shadow-xl mx-2"
+                exit={{ scale: 0.8, opacity: 0 }}
+                className="bg-(--card-bg) border border-(--color-border) rounded-2xl p-6
+                           w-full h-3/4 md:h-auto md:max-w-4xl shadow-2xl mx-2 overflow-y-auto"
               >
                 <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-xl font-bold">{openProject.title}</h3>
-
-                  <button onClick={() => setOpenProject(null)}>
-                    <X size={22} className="opacity-70 hover:opacity-100" />
+                  <h3 className="text-xl font-bold text-(--color-text)">{openProject.title}</h3>
+                  <button
+                    onClick={() => setOpenProject(null)}
+                    className="text-(--color-text-light) hover:text-(--color-text) transition"
+                  >
+                    <X size={20} />
                   </button>
                 </div>
 
-                {/* Big Image */}
                 {openProject.imageUrl && (
                   <img
                     src={openProject.imageUrl}
+                    alt={openProject.title}
                     className="w-full h-56 object-cover rounded-xl mb-4"
                   />
                 )}
 
-                <p className=" leading-relaxed mb-4">
+                <p className="text-(--color-text-light) leading-relaxed mb-4 text-sm">
                   {openProject.description}
                 </p>
 
@@ -201,9 +185,12 @@ export default function Projects() {
                   <a
                     href={openProject.projectUrl}
                     target="_blank"
-                    className="inline-block px-4 py-2 border rounded-lg hover:bg-white/10"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 border border-(--color-border)
+                               rounded-full text-sm hover:border-(--color-accent) hover:text-(--color-accent)
+                               transition-all duration-200"
                   >
-                    Visit Project →
+                    Visit Project <ArrowUpRight size={14} />
                   </a>
                 )}
               </motion.div>
@@ -216,18 +203,16 @@ export default function Projects() {
 }
 
 /* ---------------------- MODAL ---------------------- */
-
 function Modal({ children, title, onClose }) {
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center p-4 z-50">
-      <div className="bg-(--card-bg)  rounded p-6 w-full max-w-sm shadow-lg">
+      <div className="bg-(--card-bg) border border-(--color-border) rounded-xl p-6 w-full max-w-sm shadow-2xl">
         <div className="flex justify-between items-center mb-4">
-          <h4 className="text-xl font-bold text-(--color-text)">{title}</h4>
-          <button onClick={onClose}>
-            <X size={20} className="opacity-70 hover:opacity-100" />
+          <h4 className="text-lg font-bold text-(--color-text)">{title}</h4>
+          <button onClick={onClose} className="text-(--color-text-light) hover:text-(--color-text)">
+            <X size={18} />
           </button>
         </div>
-
         {children}
       </div>
     </div>
@@ -235,40 +220,43 @@ function Modal({ children, title, onClose }) {
 }
 
 /* ---------------------- PROJECT FORM ---------------------- */
-
 function ProjectForm({ form, setForm, onSave, submitText }) {
   return (
     <div className="flex flex-col gap-3">
       <input
         placeholder="Project Title"
-        className="p-2 bg-transparent border-b border-(--color-border) outline-none"
+        className="p-2 bg-transparent border-b border-(--color-border) outline-none
+                   text-(--color-text) text-sm"
         value={form.title}
         onChange={(e) => setForm({ ...form, title: e.target.value })}
       />
-
       <textarea
         placeholder="Description"
         rows={3}
-        className="p-2 bg-transparent border-b border-(--color-border) outline-none"
+        className="p-2 bg-transparent border-b border-(--color-border) outline-none
+                   text-(--color-text) text-sm"
         value={form.description}
         onChange={(e) => setForm({ ...form, description: e.target.value })}
       />
-
       <input
         placeholder="Image URL"
-        className="p-2 bg-transparent border-b border-(--color-border) outline-none"
+        className="p-2 bg-transparent border-b border-(--color-border) outline-none
+                   text-(--color-text) text-sm"
         value={form.imageUrl}
         onChange={(e) => setForm({ ...form, imageUrl: e.target.value })}
       />
-
       <input
         placeholder="Project Link (Optional)"
-        className="p-2 bg-transparent border-b border-(--color-border) outline-none"
+        className="p-2 bg-transparent border-b border-(--color-border) outline-none
+                   text-(--color-text) text-sm"
         value={form.projectUrl}
         onChange={(e) => setForm({ ...form, projectUrl: e.target.value })}
       />
-
-      <button onClick={onSave} className="w-full py-2 mt-3 bg-(--btn-bg) text-(--btn-text) rounded">
+      <button
+        onClick={onSave}
+        className="w-full py-2 mt-2 bg-(--btn-bg) text-(--btn-text) rounded-full text-sm
+                   font-medium hover:opacity-90 transition"
+      >
         {submitText}
       </button>
     </div>

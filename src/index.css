@@ -1,52 +1,51 @@
 @import "tailwindcss";
 
-.luckiest-guy-regular {
-  font-family: "Luckiest Guy", cursive;
-  font-weight: 400;
-  font-style: normal;
+:root {
+  /* Dark theme — deep navy (default when .dark class is NOT applied) */
+  --color-bg: hsl(220 20% 10%);
+  --color-text: hsl(60 9% 95%);
+  --color-border: hsl(220 15% 22%);
+  --card-bg: hsl(220 20% 14%);
+  --color-text-light: hsl(220 10% 60%);
+  --btn-bg: hsl(168 50% 42%);
+  --btn-text: hsl(220 20% 10%);
+  --color-canvas: hsl(168 40% 35%);
+  --hero-overlay: rgba(0, 0, 0, 0.25);
+  --hero-bg: hsl(220 20% 14%);
+  --color-accent: hsl(168 50% 42%);
+  --color-muted: hsl(220 15% 16%);
 }
 
-
-  :root {
-
-    --color-bg: #080808;
-    --color-text: white;
-    --color-border: #cdcaca;
-    --card-bg: #0e0d0d;
-    --color-text-light: #a3a3a3;
-    --btn-bg: #7c3ca1;
-    --btn-text: #000;
-    --color-canvas: #0cd1d1;
-      --hero-overlay: rgba(0,0,0,0.2);
-      --hero-bg:#7c3ca1;
-   
-  }
-
-  .dark {
-
-    --color-bg: rgb(234, 234, 234);
-    --color-text: black;
-    --color-border: #424141;
-    --card-bg: #f9f9f9;
-    --color-text-light: #6b6b6b;
-    --btn-bg: #4e2267;
-    --btn-text: #fff;
-      --hero-overlay: rgba(0,0,0,0.08);
-      --color-canvas: #4e5b5d;
-       --hero-bg:#e7d1eb;
-  }
-
-
+.dark {
+  /* Light theme — off-white (when .dark class IS applied) */
+  --color-bg: hsl(60 9% 98%);
+  --color-text: hsl(220 20% 18%);
+  --color-border: hsl(45 10% 82%);
+  --card-bg: #ffffff;
+  --color-text-light: hsl(220 10% 42%);
+  --btn-bg: hsl(168 50% 42%);
+  --btn-text: #ffffff;
+  --color-canvas: hsl(168 40% 55%);
+  --hero-overlay: rgba(0, 0, 0, 0.04);
+  --hero-bg: hsl(60 9% 94%);
+  --color-accent: hsl(168 50% 42%);
+  --color-muted: hsl(45 10% 92%);
+}
 
 html {
   scroll-behavior: smooth;
 }
 
-
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
+  font-family: 'Inter', sans-serif;
 }
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
 .nav-link {
   position: relative;
   padding-bottom: 4px;
@@ -59,7 +58,7 @@ body {
   bottom: 0;
   width: 0%;
   height: 2px;
-  background-color: var(--accent-color,#7c3ca1);
+  background-color: var(--color-accent);
   transition: width 0.3s;
 }
 
@@ -67,11 +66,6 @@ body {
   width: 100%;
 }
 
-.nav-link-mobile {
-  padding-bottom: 2px;
-}
-video { -webkit-font-smoothing: antialiased; -webkit-transform: translate3d(0,0,0); }
-
-canvas{
+canvas {
   color: var(--color-canvas);
 }

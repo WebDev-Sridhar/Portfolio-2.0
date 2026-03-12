@@ -1,28 +1,36 @@
 import React from 'react'
 import Navbar from '../sections/Navbar'
-import SlidePanels from '../sections/SlidePanels'
 import Hero from '../sections/Hero'
 import About from '../sections/About'
+import ServicesSection from '../sections/ServicesSection'
 import Skills from '../sections/Skills'
+import ProcessSection from '../sections/ProcessSection'
 import Projects from '../sections/Projects'
+import FitSection from '../sections/FitSection'
+import WorkingWithMeSection from '../sections/WorkingWithMeSection'
+import ExperienceSection from '../sections/ExperienceSection'
+import EducationSection from '../sections/EducationSection'
+import FAQSection from '../sections/FAQSection'
 import Contact from '../sections/Contact'
 
-
-
-export default function Home(){
-
+export default function Home() {
   return (
     <>
-        <Navbar/>
-    <div className=" relative px-5 z-1 w-screen bg-(--color-bg) text-(--color-text) select-none">
-    
-    <Hero/>
-      <About/>
-      <Skills/>
-      <Projects/>
-      <Contact/>
-    </div>
-
+      <Navbar />
+      <main className="bg-(--color-bg) text-(--color-text) select-none overflow-x-hidden">
+        <Hero />
+        <About />
+        <ServicesSection />
+        <Skills />
+        <ProcessSection />
+        <Projects />
+        <FitSection />
+        <WorkingWithMeSection />
+        <ExperienceSection />
+        <EducationSection />
+        <FAQSection />
+        <Contact />
+      </main>
     </>
   )
 }
