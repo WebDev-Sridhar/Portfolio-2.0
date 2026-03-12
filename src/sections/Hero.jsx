@@ -254,7 +254,7 @@ export default function HeroAnimated({ callParent }) {
                 className="w-full h-full bg-cover bg-center"
                 style={{ backgroundImage: `url("/img/Avatar.png")` }}
                 role="img"
-                aria-label="Avatar"
+                aria-label="Sridhar — Full Stack Developer"
               />
             </div>
           </motion.div>

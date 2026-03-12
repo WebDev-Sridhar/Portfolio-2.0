@@ -73,11 +73,12 @@ export default function Contact() {
           </motion.a>
 
           {/* Phone */}
-          <motion.div
+          <motion.a
+            href={`tel:${contact.phone}`}
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.2 }}
             className="flex items-center gap-3 bg-(--card-bg) border border-(--color-border)
-                       rounded-xl px-6 py-4 hover:border-(--color-accent) transition-all duration-200"
+                       rounded-xl px-6 py-4 hover:border-(--color-accent) transition-all duration-200 group"
           >
             <div className="w-9 h-9 rounded-lg bg-(--color-accent)/10 flex items-center
                             justify-center text-(--color-accent) shrink-0">
@@ -89,7 +90,7 @@ export default function Contact() {
                 {contact.phone || "+91 00000 00000"}
               </div>
             </div>
-          </motion.div>
+          </motion.a>
         </div>
 
         {/* Social Icons */}

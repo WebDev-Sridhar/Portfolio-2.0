@@ -12,6 +12,7 @@ import ExperienceSection from '../sections/ExperienceSection'
 import EducationSection from '../sections/EducationSection'
 import FAQSection from '../sections/FAQSection'
 import Contact from '../sections/Contact'
+import Footer from '../sections/Footer'
 
 export default function Home() {
   return (
@@ -31,6 +32,7 @@ export default function Home() {
         <FAQSection />
         <Contact />
       </main>
+      <Footer />
     </>
   )
 }

@@ -61,6 +61,8 @@ export default function About() {
               style={{
                 backgroundImage: `url("${draft.profileImage || "/img/profile.png"}")`,
               }}
+              role="img"
+              aria-label="Sridhar — Full Stack Developer profile photo"
             />
             {/* Subtle overlay to tone down brightness */}
             <div className="absolute inset-0 bg-black/20" />

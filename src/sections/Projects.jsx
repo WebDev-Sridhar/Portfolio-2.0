@@ -105,14 +105,15 @@ export default function Projects() {
                   src={p.imageUrl}
                   alt={p.title}
                   className="w-full h-44 object-cover"
+                  loading="lazy"
                 />
               )}
 
               {/* CONTENT */}
               <div className="p-5">
-                <h4 className="font-semibold text-base text-(--color-text) mb-2">
+                <h3 className="font-semibold text-base text-(--color-text) mb-2">
                   {p.title}
-                </h4>
+                </h3>
                 {p.description && (
                   <p className="text-sm text-(--color-text-light) line-clamp-2 leading-relaxed">
                     {p.description}
