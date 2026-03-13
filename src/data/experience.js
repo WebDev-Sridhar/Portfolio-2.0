@@ -4,7 +4,7 @@ export const experience = [
     company: "Self-employed",
     period: "2025 – Present",
     description:
-      "Building React and Supabase web applications, portfolios, and custom admin dashboards for clients across India and internationally.",
+      "Building React and Supabase web applications, portfolios, and custom admin dashboards for clients across India.",
   },
   {
     role: "Frontend Developer",

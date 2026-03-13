@@ -4,8 +4,8 @@ export const faqs = [
     a: "It depends on scope. A portfolio takes 1–2 weeks. A full web app typically takes 4–8 weeks. I always give you a clear timeline estimate before we start.",
   },
   {
-    q: "Do you work with clients outside India?",
-    a: "Yes. I work with clients globally. I'm comfortable with async communication and can accommodate overlap across most time zones.",
+    q: "How do I get in touch to discuss a project?",
+    a: "You can reach me via the contact form on this site, or directly by email or WhatsApp. I typically respond within 24 hours.",
   },
   {
     q: "What do you need from me to get started?",

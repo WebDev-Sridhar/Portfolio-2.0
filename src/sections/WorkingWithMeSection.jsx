@@ -1,5 +1,5 @@
 import React from "react";
-import { Clock, Globe, MessageSquare, RefreshCw } from "lucide-react";
+import { Clock, MapPin, MessageSquare, RefreshCw } from "lucide-react";
 import SectionHeading from "../components/SectionHeading";
 import WorkingWithMeCard from "../components/WorkingWithMeCard";
 
@@ -10,9 +10,9 @@ const cards = [
     value: "Within 24 hours",
   },
   {
-    icon: <Globe size={20} />,
-    title: "Time Zones",
-    value: "IST — flexible overlap",
+    icon: <MapPin size={20} />,
+    title: "Location",
+    value: "India (IST)",
   },
   {
     icon: <MessageSquare size={20} />,
