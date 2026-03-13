@@ -10,7 +10,7 @@ export default function About() {
   const { isAdmin } = useAdmin();
   const [about, setAbout] = useState({
     aboutText: "",
-    profileImage: "/img/profile.png",
+    profileImage: "",
   });
 
   const [editMode, setEditMode] = useState(false);
@@ -20,6 +20,7 @@ export default function About() {
     (async () => {
       const d = await getDoc(doc(db, "settings", "about"));
       if (d.exists()) {
+            console.log(d.data());
         setAbout(d.data());
         setDraft(d.data());
       }
@@ -29,6 +30,7 @@ export default function About() {
   const saveChanges = async () => {
     await setDoc(doc(db, "settings", "about"), draft);
     setAbout(draft);
+
     setEditMode(false);
   };
 
@@ -59,7 +61,7 @@ export default function About() {
             <div
               className="w-full h-full bg-cover bg-center"
               style={{
-                backgroundImage: `url("${draft.profileImage || "/img/profile.png"}")`,
+                backgroundImage: `url("${draft.profileImage || "/img/profile2.jpg"}")`,
               }}
               role="img"
               aria-label="Sridhar — Full Stack Developer profile photo"
@@ -68,23 +70,8 @@ export default function About() {
             <div className="absolute inset-0 bg-black/20" />
           </div>
 
-          {/* Image URL Input (edit mode) */}
-          {editMode && (
-            <motion.input
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.25 }}
-              type="text"
-              placeholder="Profile image URL"
-              className="mt-4 w-full px-3 py-2 bg-transparent border border-(--color-border)
-                         rounded-lg outline-none text-(--color-text) text-sm"
-              value={draft.profileImage}
-              onChange={(e) => setDraft({ ...draft, profileImage: e.target.value })}
-            />
-          )}
         </motion.div>
 
-        {/* RIGHT — TEXT */}
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -124,6 +111,21 @@ export default function About() {
               {about.aboutText ||
                 "Hi, I'm Sridhar — a Full Stack Developer specializing in modern frontend and cloud integrations."}
             </motion.p>
+          )}
+
+          {/* Image URL input (edit mode) */}
+          {editMode && (
+            <motion.input
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.25 }}
+              type="text"
+              placeholder="Profile image URL"
+              className="mt-3 w-full px-3 py-2 bg-transparent border border-(--color-border)
+                         rounded-lg outline-none text-(--color-text) text-sm"
+              value={draft.profileImage}
+              onChange={(e) => setDraft({ ...draft, profileImage: e.target.value })}
+            />
           )}
 
           {/* Edit mode buttons */}
