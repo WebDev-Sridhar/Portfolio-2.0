@@ -17,7 +17,7 @@ const cards = [
   {
     icon: <MessageSquare size={20} />,
     title: "Communication",
-    value: "WhatsApp / Email / Slack",
+    value: "WhatsApp / Email / Zoom",
   },
   {
     icon: <RefreshCw size={20} />,

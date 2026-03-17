@@ -58,14 +58,15 @@ export default function About() {
             className="relative rounded-2xl overflow-hidden shadow-xl border border-(--color-border)"
             style={{ aspectRatio: "4/5" }}
           >
-            <div
-              className="w-full h-full bg-cover bg-center"
-              style={{
-                backgroundImage: `url("${draft.profileImage || "/img/profile2.jpg"}")`,
-              }}
-              role="img"
-              aria-label="Sridhar — Full Stack Developer profile photo"
-            />
+
+              <img
+                src={draft.profileImage || "/img/profile2.jpg"}
+                alt="Sridhar — Full Stack Developer profile photo"
+                className="w-full h-full object-cover object-center"
+                loading="lazy"
+
+              />
+
             {/* Subtle overlay to tone down brightness */}
             <div className="absolute inset-0 bg-black/20" />
           </div>
