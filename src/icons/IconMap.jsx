@@ -49,6 +49,20 @@ fill="#082f07" viewBox="0 0 24 24" >
 </svg>
    ),
 
+   supabase:(
+    <svg  xmlns="http://www.w3.org/2000/svg" width={36}   height={36}  
+fill="#3ECF8E" viewBox="0 0 24 24" >
+<path d="M19.98 9.12h-8.03l-.04-6.26c-.01-.82-1.05-1.17-1.56-.53l-7.7 9.71c-.91 1.15-.09 2.84 1.37 2.84h7.97l.09 6.26c.01.82 1.05 1.17 1.56.53l7.71-9.71c.91-1.15.09-2.84-1.37-2.84"></path>
+</svg>
+   ),
+
+   vercel:(
+    <svg  xmlns="http://www.w3.org/2000/svg" width={36}   height={36}  
+fill="var(--color-text)" viewBox="0 0 24 24" >
+<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+</svg>
+   ),
+
    mysql:(
     <svg  xmlns="http://www.w3.org/2000/svg" width={36}   height={36}  
 fill="var(--color-text)" viewBox="2 2 20 20" >
