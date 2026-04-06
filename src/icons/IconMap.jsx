@@ -59,8 +59,9 @@ fill="#3ECF8E" viewBox="0 0 24 24" >
    vercel:(
     <svg  xmlns="http://www.w3.org/2000/svg" width={36}   height={36}  
 fill="var(--color-text)" viewBox="0 0 24 24" >
-<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+<path d="M12 2.68 22 20H2z"></path>
 </svg>
+
    ),
 
    mysql:(
