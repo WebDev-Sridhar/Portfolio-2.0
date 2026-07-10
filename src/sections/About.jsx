@@ -60,7 +60,7 @@ export default function About() {
           >
 
               <img
-                src={draft.profileImage || "/img/profile2.jpg"}
+                src={draft.profileImage || "/img/profile.png"}
                 alt="Sridhar — Full Stack Developer profile photo"
                 className="w-full h-full object-cover object-center"
                 loading="lazy"

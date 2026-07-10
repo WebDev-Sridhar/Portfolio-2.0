@@ -16,6 +16,23 @@ export default function HeroAnimated({ callParent }) {
   const [draft, setDraft] = useState(data);
   const [editMode, setEditMode] = useState(false);
 
+  // ── Responsive sizing ──
+  const [winW, setWinW] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 1024
+  );
+  useEffect(() => {
+    const onResize = () => setWinW(window.innerWidth);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+  const isMd = winW >= 768;
+  const wrapW  = isMd ? 520 : Math.min(winW * 0.82, 340);
+  const wrapH  = isMd ? 580 : wrapW * 1.12;
+  const avatW  = isMd ? 420 : wrapW * 0.82;
+  const avatH  = isMd ? 490 : avatW * 1.17;
+  const glowW  = isMd ? 380 : wrapW * 0.75;
+  const glowH  = isMd ? 430 : glowW * 1.13;
+
   // Load from Firestore on mount
   useEffect(() => {
     (async () => {
@@ -54,7 +71,7 @@ export default function HeroAnimated({ callParent }) {
       </div>
 
       {/* Content grid */}
-      <div className="max-w-6xl mx-auto px-6 w-full py-32 md:py-0 grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
+      <div className="max-w-6xl mx-auto px-6 w-full pt-20 pb-8 md:py-0 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center relative z-10">
 
         {/* TEXT BLOCK */}
         <motion.div
@@ -127,7 +144,7 @@ export default function HeroAnimated({ callParent }) {
                 initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.05 }}
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full
+                className="inline-flex  items-center gap-2 px-3 py-1.5 rounded-full
                            border border-(--color-accent)/40 bg-(--color-accent)/10 mb-5"
               >
                 <span className="w-2 h-2 rounded-full bg-(--color-accent) animate-pulse" />
@@ -237,27 +254,142 @@ export default function HeroAnimated({ callParent }) {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
-          className="flex justify-center"
+          className="flex justify-center order-first md:order-last"
         >
           <motion.div
-            animate={{ y: [0, -10, 0] }}
+            animate={{ y: [0, -12, 0] }}
             transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-            className="relative"
+            className="relative flex items-center justify-center"
+            style={{ width: wrapW, height: wrapH }}
           >
-            {/* Decorative ring */}
-            <div className="absolute inset-0 rounded-full border-2 border-(--color-accent)/20 scale-110" />
+            {/* ── Outermost ambient glow ── */}
             <div
-              className="w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden
-                         border-2 border-(--color-accent)/30 shadow-2xl"
+              className="absolute inset-0 rounded-full"
+              style={{
+                background:
+                  "radial-gradient(ellipse at center, var(--color-accent) 0%, transparent 70%)",
+                opacity: 0.12,
+                transform: "scale(1.25)",
+                filter: "blur(40px)",
+              }}
+            />
+
+            {/* ── Animated blob SVG (morphs shape) ── */}
+            <svg
+              viewBox="0 0 200 200"
+              xmlns="http://www.w3.org/2000/svg"
+              className="absolute inset-0 w-full h-full"
+              style={{ animation: "blobSpin 18s linear infinite" }}
+            >
+              <defs>
+                <linearGradient id="blobGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="var(--color-accent)" stopOpacity="0.85" />
+                  <stop offset="100%" stopColor="var(--color-accent)" stopOpacity="0.25" />
+                </linearGradient>
+                <filter id="blobBlur">
+                  <feGaussianBlur stdDeviation="3" />
+                </filter>
+              </defs>
+
+              {/* Soft blurred glow blob behind */}
+              <path
+                fill="url(#blobGrad)"
+                filter="url(#blobBlur)"
+                opacity="0.5"
+                style={{ animation: "morphBlob 8s ease-in-out infinite alternate" }}
+                d="M47.7,-64.7C60.7,-54.4,69.4,-38.8,74.1,-21.8C78.8,-4.8,79.5,13.6,73.2,29.5C66.9,45.4,53.6,58.8,38.1,67.1C22.5,75.4,4.8,78.7,-13.4,76.4C-31.7,74.1,-50.5,66.2,-62.3,52.4C-74.1,38.6,-78.9,18.8,-76.4,0.7C-73.9,-17.4,-64,-33.9,-51.2,-44.5C-38.3,-55.1,-22.6,-59.8,-5.2,-64.1C12.2,-68.4,34.6,-75,47.7,-64.7Z"
+                transform="translate(100 100)"
+              />
+
+              {/* Main solid blob */}
+              <path
+                fill="url(#blobGrad)"
+                opacity="0.9"
+                style={{ animation: "morphBlob 8s ease-in-out infinite alternate-reverse" }}
+                d="M43.2,-58.3C55.3,-49.1,63.1,-34.2,67.5,-18C71.9,-1.7,72.9,15.9,66.8,30.8C60.7,45.7,47.5,57.9,32.4,65.4C17.2,72.9,0.1,75.8,-17.3,73C-34.7,70.2,-52.4,61.8,-63.3,47.8C-74.2,33.9,-78.3,14.4,-75.3,-3.7C-72.3,-21.8,-62.2,-38.6,-48.5,-48.1C-34.8,-57.6,-17.4,-59.8,-0.5,-59.2C16.4,-58.5,31.1,-67.5,43.2,-58.3Z"
+                transform="translate(100 100)"
+              />
+            </svg>
+
+            {/* ── Secondary inner spinning blob (accent border ring) ── */}
+            <svg
+              viewBox="0 0 200 200"
+              xmlns="http://www.w3.org/2000/svg"
+              className="absolute inset-0 w-full h-full"
+              style={{
+                animation: "blobSpinReverse 24s linear infinite",
+                opacity: 0.4,
+              }}
+            >
+              <path
+                fill="none"
+                stroke="var(--color-accent)"
+                strokeWidth="1.5"
+                style={{ animation: "morphBlob2 10s ease-in-out infinite alternate" }}
+                d="M38.5,-52.6C49.7,-43.8,58.4,-30.6,62.8,-15.5C67.2,-0.4,67.2,16.6,60.5,30.2C53.8,43.7,40.4,53.8,25.6,60.2C10.8,66.6,-5.4,69.3,-21.1,66C-36.9,62.6,-52.2,53.1,-61.4,39.3C-70.7,25.5,-73.9,7.3,-70.8,-9.4C-67.8,-26.1,-58.4,-41.2,-45.5,-50C-32.6,-58.8,-16.3,-61.3,-0.5,-60.8C15.4,-60.3,27.2,-61.4,38.5,-52.6Z"
+                transform="translate(100 100)"
+              />
+            </svg>
+
+            {/* ── Floating accent particles ── */}
+            {[
+              { top: "8%",  left: "12%", size: 6,  delay: "0s",   dur: "3.2s" },
+              { top: "15%", left: "80%", size: 4,  delay: "0.8s", dur: "4s"   },
+              { top: "70%", left: "5%",  size: 5,  delay: "1.4s", dur: "3.5s" },
+              { top: "80%", left: "78%", size: 7,  delay: "0.4s", dur: "5s"   },
+              { top: "45%", left: "90%", size: 3,  delay: "2s",   dur: "2.8s" },
+            ].map((p, i) => (
+              <div
+                key={i}
+                className="absolute rounded-full"
+                style={{
+                  top: p.top,
+                  left: p.left,
+                  width: p.size,
+                  height: p.size,
+                  background: "var(--color-accent)",
+                  opacity: 0.7,
+                  animation: `floatParticle ${p.dur} ease-in-out ${p.delay} infinite alternate`,
+                  boxShadow: "0 0 8px var(--color-accent)",
+                }}
+              />
+            ))}
+
+            {/* ── Avatar image clipped to a soft irregular blob shape ── */}
+            <div
+              className="relative z-10"
+              style={{
+                width: avatW,
+                height: avatH,
+                clipPath:
+                  "polygon(48% 0%, 82% 4%, 98% 22%, 100% 48%, 92% 72%, 74% 92%, 50% 100%, 24% 96%, 6% 78%, 0% 52%, 4% 26%, 20% 8%)",
+                overflow: "hidden",
+              }}
             >
               <div
-                className="w-full h-full bg-cover bg-center"
-                style={{ backgroundImage: `url("/img/Avatar.png")` }}
+                className="w-full h-full bg-cover"
+                style={{
+                  backgroundImage: `url("/img/avatar.png")`,
+                  backgroundPosition: "top center",
+                }}
                 role="img"
                 aria-label="Sridhar — Full Stack Developer"
-                    loading="lazy"
               />
             </div>
+            {/* Glow underneath the clip (box-shadow doesn't work on clip-path elements) */}
+            <div
+              className="absolute z-0 rounded-full"
+              style={{
+                width: glowW,
+                height: glowH,
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                background: "radial-gradient(ellipse at center, var(--color-accent) 0%, transparent 70%)",
+                opacity: 0.18,
+                filter: "blur(30px)",
+              }}
+            />
           </motion.div>
         </motion.div>
       </div>
