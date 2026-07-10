@@ -369,7 +369,7 @@ export default function HeroAnimated({ callParent }) {
               <div
                 className="w-full h-full bg-cover"
                 style={{
-                  backgroundImage: `url("/img/avatar.png")`,
+                  backgroundImage: `url("/img/Avatar.png")`,
                   backgroundPosition: "top center",
                 }}
                 role="img"
