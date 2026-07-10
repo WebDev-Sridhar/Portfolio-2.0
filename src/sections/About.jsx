@@ -20,7 +20,6 @@ export default function About() {
     (async () => {
       const d = await getDoc(doc(db, "settings", "about"));
       if (d.exists()) {
-            console.log(d.data());
         setAbout(d.data());
         setDraft(d.data());
       }
