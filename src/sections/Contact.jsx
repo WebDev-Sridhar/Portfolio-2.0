@@ -30,7 +30,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact-section" className="py-24 bg-(--color-bg)">
+    <section id="contact-section" className="section bg-(--color-bg)">
       <div className="max-w-6xl mx-auto px-6 relative">
 
         {/* Admin Edit Button */}
@@ -57,16 +57,16 @@ export default function Contact() {
             href={`mailto:${contact.email}`}
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.2 }}
-            className="flex items-center gap-3 bg-(--card-bg) border border-(--color-border)
-                       rounded-xl px-6 py-4 hover:border-(--color-accent) transition-all duration-200 group"
+            className="flex items-center gap-4 bg-(--card-bg) border border-(--color-border)
+                       rounded-xl px-7 py-5 hover:border-(--color-accent) transition-all duration-200 group"
           >
-            <div className="w-9 h-9 rounded-lg bg-(--color-accent)/10 flex items-center
+            <div className="w-11 h-11 rounded-lg bg-(--color-accent)/10 flex items-center
                             justify-center text-(--color-accent) shrink-0">
-              <Mail size={18} />
+              <Mail size={20} />
             </div>
             <div>
-              <div className="text-xs text-(--color-text-light) mb-0.5">Email</div>
-              <div className="text-sm font-medium text-(--color-text) group-hover:text-(--color-accent) transition">
+              <div className="text-sm font-medium text-(--color-text-light) mb-0.5">Email</div>
+              <div className="text-base font-semibold text-(--color-text) group-hover:text-(--color-accent) transition">
                 {contact.email || "your@email.com"}
               </div>
             </div>
@@ -77,16 +77,16 @@ export default function Contact() {
             href={`tel:${contact.phone}`}
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.2 }}
-            className="flex items-center gap-3 bg-(--card-bg) border border-(--color-border)
-                       rounded-xl px-6 py-4 hover:border-(--color-accent) transition-all duration-200 group"
+            className="flex items-center gap-4 bg-(--card-bg) border border-(--color-border)
+                       rounded-xl px-7 py-5 hover:border-(--color-accent) transition-all duration-200 group"
           >
-            <div className="w-9 h-9 rounded-lg bg-(--color-accent)/10 flex items-center
+            <div className="w-11 h-11 rounded-lg bg-(--color-accent)/10 flex items-center
                             justify-center text-(--color-accent) shrink-0">
-              <Phone size={18} />
+              <Phone size={20} />
             </div>
             <div>
-              <div className="text-xs text-(--color-text-light) mb-0.5">Phone</div>
-              <div className="text-sm font-medium text-(--color-text)">
+              <div className="text-sm font-medium text-(--color-text-light) mb-0.5">Phone</div>
+              <div className="text-base font-semibold text-(--color-text)">
                 {contact.phone || "+91 00000 00000"}
               </div>
             </div>

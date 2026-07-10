@@ -12,7 +12,7 @@ const cards = [
   {
     icon: <MapPin size={20} />,
     title: "Location",
-    value: "India (IST)",
+    value: "Tamil Nadu, India (IST)",
   },
   {
     icon: <MessageSquare size={20} />,

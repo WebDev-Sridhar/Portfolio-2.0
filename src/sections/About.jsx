@@ -39,8 +39,8 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="py-24 bg-(--color-muted)">
-      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+    <section id="about" className="section bg-(--color-muted)">
+      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-stretch">
 
         {/* LEFT — IMAGE */}
         <motion.div
@@ -54,8 +54,7 @@ export default function About() {
           <div className="absolute -inset-4 rounded-2xl bg-(--color-accent)/5 blur-xl" />
 
           <div
-            className="relative rounded-2xl overflow-hidden shadow-xl border border-(--color-border)"
-            style={{ aspectRatio: "4/5" }}
+            className="relative rounded-2xl overflow-hidden shadow-xl border border-(--color-border) h-full min-h-[340px]"
           >
 
               <img
@@ -89,7 +88,7 @@ export default function About() {
             </button>
           )}
 
-          <SectionHeading title="About Me" center={false} />
+          <SectionHeading title="About Me" center={false} size="md" />
 
           {editMode ? (
             <motion.textarea
@@ -103,7 +102,7 @@ export default function About() {
             />
           ) : (
             <motion.p
-              className="text-(--color-text-light) leading-relaxed text-base"
+              className="text-(--color-text-light) text-base md:text-lg leading-relaxed"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.8 }}

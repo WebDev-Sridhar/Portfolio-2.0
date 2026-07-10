@@ -47,7 +47,7 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="py-24 bg-(--color-bg)">
+    <section id="projects" className="section bg-(--color-bg)">
       <div className="max-w-6xl mx-auto px-6">
 
         {/* TITLE */}
@@ -111,7 +111,7 @@ export default function Projects() {
 
               {/* CONTENT */}
               <div className="p-5">
-                <h3 className="font-semibold text-base text-(--color-text) mb-2">
+                <h3 className="font-bold text-base text-(--color-text) mb-2.5">
                   {p.title}
                 </h3>
                 {p.description && (
@@ -120,9 +120,9 @@ export default function Projects() {
                   </p>
                 )}
                 {p.projectUrl && (
-                  <div className="flex items-center gap-1 mt-3 text-xs text-(--color-accent)
-                                   font-medium group-hover:gap-2 transition-all">
-                    View Project <ArrowUpRight size={13} />
+                  <div className="flex items-center gap-1.5 mt-4 text-sm text-(--color-accent)
+                                   font-semibold group-hover:gap-2.5 transition-all">
+                    View Project <ArrowUpRight size={15} />
                   </div>
                 )}
               </div>

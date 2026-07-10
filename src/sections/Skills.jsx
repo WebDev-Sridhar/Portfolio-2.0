@@ -57,7 +57,7 @@ export default function Skills() {
   };
 
   return (
-    <section id="skills" className="py-24 bg-(--color-bg) overflow-hidden">
+    <section id="skills" className="section bg-(--color-bg) overflow-hidden">
       <div className="max-w-6xl mx-auto px-6">
 
         {/* HEADER */}
@@ -81,7 +81,7 @@ export default function Skills() {
 
         {/* SKILLS GRID */}
         <motion.div
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -125,19 +125,19 @@ export default function Skills() {
                   transition={{ duration: 2.5, repeat: Infinity }}
                 >
                   {s.icon?.trim().startsWith("<svg") ? (
-                    <div dangerouslySetInnerHTML={{ __html: s.icon }} className="w-12 h-12" />
+                    <div dangerouslySetInnerHTML={{ __html: s.icon }} className="w-14 h-14" />
                   ) : (
-                    <div className="text-4xl drop-shadow-md">{IconMap[s.icon] ?? "🔧"}</div>
+                    <div className="text-5xl drop-shadow-md">{IconMap[s.icon] ?? "🔧"}</div>
                   )}
                 </motion.div>
 
                 {/* NAME */}
-                <div className="font-semibold text-sm text-(--color-text) text-center tracking-wide">
+                <h3 className="font-bold text-base md:text-lg text-(--color-text) text-center tracking-wide">
                   {s.name}
-                </div>
+                </h3>
 
                 {/* LEVEL BADGE */}
-                <span className="text-xs px-2 py-0.5 rounded-full bg-(--color-accent)/10 text-(--color-accent) font-medium">
+                <span className="text-sm px-3 py-1 rounded-full bg-(--color-accent)/10 text-(--color-accent) font-semibold">
                   {s.level}
                 </span>
               </motion.div>

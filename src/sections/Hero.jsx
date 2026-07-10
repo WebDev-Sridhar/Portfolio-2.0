@@ -71,7 +71,7 @@ export default function HeroAnimated({ callParent }) {
       </div>
 
       {/* Content grid */}
-      <div className="max-w-6xl mx-auto px-6 w-full pt-20 pb-8 md:py-0 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center relative z-10">
+      <div className="max-w-6xl mx-auto px-6 w-full pt-20 pb-10 md:pt-20 md:pb-16 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center relative z-10">
 
         {/* TEXT BLOCK */}
         <motion.div
@@ -144,11 +144,10 @@ export default function HeroAnimated({ callParent }) {
                 initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.05 }}
-                className="inline-flex  items-center gap-2 px-3 py-1.5 rounded-full
-                           border border-(--color-accent)/40 bg-(--color-accent)/10 mb-5"
-              >
-                <span className="w-2 h-2 rounded-full bg-(--color-accent) animate-pulse" />
-                <span className="text-xs font-medium text-(--color-accent)">
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full
+                           border border-(--color-accent)/40 bg-(--color-accent)/10 mb-6">
+                <span className="w-2.5 h-2.5 rounded-full bg-(--color-accent) animate-pulse" />
+                <span className="text-sm font-semibold text-(--color-accent)">
                   Open to Opportunities
                 </span>
               </motion.div>
@@ -157,33 +156,33 @@ export default function HeroAnimated({ callParent }) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.1 }}
-                className="text-xs uppercase tracking-widest text-(--color-accent) font-medium block mb-4"
+                className="text-sm uppercase tracking-widest text-(--color-accent) font-semibold block mb-5"
               >
                 Full Stack Developer
               </motion.span>
 
-              <h1 className="text-5xl md:text-6xl font-bold leading-tight text-(--color-text) mb-4">
+              <h1 className="text-5xl md:text-7xl font-bold leading-none tracking-tight text-(--color-text) mb-3">
                 Hi, I'm{" "}
                 <span className="text-(--color-accent)">{data.name}</span>
               </h1>
 
-              <h2 className="text-xl md:text-2xl text-(--color-text-light) mb-4">
+              <h2 className="text-xl md:text-2xl font-semibold text-(--color-text-light) mb-3">
                 {data.role}
               </h2>
 
-              <p className="text-(--color-text-light) max-w-md leading-relaxed mb-8 text-base">
+              <p className="lead text-base md:text-lg max-w-lg mb-6">
                 {data.subtitle}
               </p>
 
               {/* CTA Buttons */}
-              <div className="flex flex-wrap gap-3 mb-8">
+              <div className="flex flex-wrap gap-3 mb-6">
                 <a
                   href="#projects"
                   onClick={callParent}
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-full
-                             bg-(--btn-bg) text-(--btn-text) font-semibold text-sm
+                             bg-(--btn-bg) text-(--btn-text) font-bold text-sm
                              hover:scale-105 transition-transform duration-200
-                             shadow-lg shadow-(--color-accent)/20"
+                             shadow-lg shadow-(--color-accent)/25"
                 >
                   View My Work
                 </a>

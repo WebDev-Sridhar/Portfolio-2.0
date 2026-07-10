@@ -34,16 +34,43 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: 18px;
 }
 
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: 'Inter', sans-serif;
+  font-weight: 450;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5 {
   font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+/* ── Global tight section spacing ── */
+.section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+@media (min-width: 768px) {
+  .section {
+    padding-top: 5.5rem;
+    padding-bottom: 5.5rem;
+  }
+}
+
+/* ── Large-type paragraph style ── */
+.lead {
+  font-size: 1.2rem;
+  line-height: 1.75;
+  font-weight: 400;
+  color: var(--color-text-light);
 }
 
 .nav-link {
