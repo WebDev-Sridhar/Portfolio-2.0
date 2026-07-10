@@ -61,7 +61,7 @@ export default function HeroAnimated({ callParent }) {
   };
 
   return (
-    <section className="min-h-screen flex items-center relative overflow-hidden">
+    <section id='hero' className="min-h-screen flex items-center relative overflow-hidden">
 
       {/* Gradient blob background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">

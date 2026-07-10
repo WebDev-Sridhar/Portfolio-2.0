@@ -52,9 +52,9 @@ export default function Navbar({ returnFn }) {
 
           {/* LOGO */}
           <motion.div whileHover={{ scale: 1.05 }} className="font-bold text-xl cursor-pointer">
-            <Link to="/" onClick={returnFn}>
+            <a href="#hero" onClick={returnFn}>
               <span className="text-(--color-accent)">S</span>ridhar.
-            </Link>
+            </a>
           </motion.div>
 
           {/* DESKTOP LINKS */}
