@@ -27,8 +27,8 @@ export default function Home() {
         <Projects />
         <FitSection />
         <WorkingWithMeSection />
-        <ExperienceSection />
-        <EducationSection />
+        {/* <ExperienceSection /> */}
+        {/* <EducationSection /> */}
         <FAQSection />
         <Contact />
       </main>
